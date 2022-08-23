@@ -27,7 +27,7 @@ jobs:
 
       # docker make image, and push 
       - name: docker image build
-        run: docker build -t my-image
+        run: docker build -t my-image . 
         
       - name: docker login
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
