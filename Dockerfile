@@ -15,7 +15,7 @@ WORKDIR /usr/src/app
 COPY . .
 # <src> 의 파일 혹은 디렉토리를 <dest> 경로에 복사하는 명령어임 . 
 
-WORKDIR ./mysite
+#WORKDIR ./mysite
 # manage.py를 실행할 수 있는 디렉토리로 이동
 # cd mysite
 
