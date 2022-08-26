@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-python-app
-        image: azuredocs/github-to-docker-practice
+        image: sktregistry.azurecr.io/azuredocs/github-to-docker-practice
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
