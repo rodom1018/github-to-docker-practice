@@ -1,0 +1,26 @@
+FROM node:14-alpine
+# node 버전 맞추기
+
+MAINTAINER hyeon <ske04186@gmail.com>
+# DOCKER 의 컨테이너를 생성 및 관리하는 사람의 정보 .
+
+# set working directory
+WORKDIR /app
+
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+
+RUN npm install --global serve
+#RUN npm install react-scripts@3.4.1 -g
+
+# add app
+COPY . ./
+
+# start app
+CMD ["npm", "run" , "build"]
+CMD ["serve", "-s", "build"]
+#CMD ["npm", "start"]
