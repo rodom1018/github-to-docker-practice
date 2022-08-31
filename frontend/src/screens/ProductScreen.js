@@ -7,12 +7,13 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { listProductDetails, createProductReview } from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+import ReactWordcloud from 'react-wordcloud'
 
 function ProductScreen({ match, history }) {
     const [qty, setQty] = useState(1)
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState('')
-
+    
     const dispatch = useDispatch()
 
     const productDetails = useSelector(state => state.productDetails)
@@ -27,6 +28,64 @@ function ProductScreen({ match, history }) {
         error: errorProductReview,
         success: successProductReview,
     } = productReviewCreate
+
+    const options = {
+        rotations: 2,
+        rotationAngles: [-90, 0],
+    }
+    const size = [400, 300];
+    const words = [
+        {
+            text: '지립니다',
+            value: 64,
+          },
+          {
+            text: '굿',
+            value: 64,
+          },
+          {
+            text: '굳잡',
+            value: 64,
+          },
+          {
+            text: '멋져',
+            value: 64,
+          },
+          {
+            text: '예뻐요',
+            value: 64,
+          },{
+            text: '좋습니다',
+            value: 64,
+          },{
+            text: '지려요',
+            value: 64,
+          },
+          {
+            text: 'ㅡㅡ뭐임',
+            value: 34,
+          },{
+            text: '이게뭐야',
+            value: 24,
+          },{
+            text: '싫다',
+            value: 14,
+          },{
+            text: '별로',
+            value: 44,
+          },{
+            text: '우잉',
+            value: 33,
+          },
+      ]
+    
+    const callbacks = {
+        getWordColor: word => word.value > 50 ? "blue" : "red",
+        onWordClick: console.log,
+        onWordMouseOver: console.log,
+        getWordTooltip: word => `${word.text} (${word.value}) [${word.value > 50 ? "good" : "bad"}]`,
+    }
+    const lists = []
 
     useEffect(() => {
         if (successProductReview) {
@@ -160,7 +219,12 @@ function ProductScreen({ match, history }) {
                                                 <strong>{review.name}</strong>
                                                 <Rating value={review.rating} color='#f8e825' />
                                                 <p>{review.createdAt.substring(0, 10)}</p>
-                                                <p>{review.comment}</p>
+                                                <p>{review.comment} </p>
+                                                <p>{review.is_positive == 0 ? (
+                                            <i className='fas fa-check' style={{ color: 'red' }}></i>
+                                        ) : (
+                                                <i className='fas fa-check' style={{ color: 'green' }}></i>
+                                            )}</p>
                                             </ListGroup.Item>
                                         ))}
 
@@ -196,6 +260,7 @@ function ProductScreen({ match, history }) {
                                                             row='5'
                                                             value={comment}
                                                             onChange={(e) => setComment(e.target.value)}
+                                                            lists ={comment}
                                                         ></Form.Control>
                                                     </Form.Group>
 
@@ -214,6 +279,17 @@ function ProductScreen({ match, history }) {
                                         </ListGroup.Item>
                                     </ListGroup>
                                 </Col>
+                                
+                                <Col md={6}>
+                                    <h4>워드클라우드</h4>
+                                    <ReactWordcloud
+                                        callbacks={callbacks}
+                                        options={options}
+                                        size={size}
+                                        words={words}/>               
+                                    
+                                </Col>
+                            
                             </Row>
                         </div>
                     )

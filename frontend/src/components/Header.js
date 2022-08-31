@@ -63,6 +63,10 @@ function Header() {
                                         <NavDropdown.Item>Orders</NavDropdown.Item>
                                     </LinkContainer>
 
+                                    <LinkContainer to='/admin/Graphiclist'>
+                                        <NavDropdown.Item>Graphic</NavDropdown.Item>
+                                    </LinkContainer>
+
                                 </NavDropdown>
                             )}
 

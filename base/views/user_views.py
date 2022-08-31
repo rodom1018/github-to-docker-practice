@@ -38,7 +38,6 @@ def registerUser(request):
             email=data['email'],
             password=make_password(data['password'])
         )
-
         serializer = UserSerializerWithToken(user, many=False)
         return Response(serializer.data)
     except:
@@ -54,7 +53,7 @@ def updateUserProfile(request):
 
     data = request.data
     user.first_name = data['name']
-    user.username = data['email']
+    user.username = data['name']
     user.email = data['email']
 
     if data['password'] != '':
