@@ -4,7 +4,7 @@ FROM python:3.9.13
 MAINTAINER hyeon <ske04186@gmail.com>
 # Docker의 컨테이너를 생성 및 관리 하는 사람의 정보
 
-RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
 RUN sudo apt-get install git-lfs
 RUN pip3 install django
 # 도커 컨테이너에서 pip3 install django 명령어를 실행.
