@@ -4,6 +4,8 @@ FROM python:3.9.13
 MAINTAINER hyeon <ske04186@gmail.com>
 # Docker의 컨테이너를 생성 및 관리 하는 사람의 정보
 
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+RUN sudo apt-get install git-lfs
 RUN pip3 install django
 # 도커 컨테이너에서 pip3 install django 명령어를 실행.
 
@@ -26,12 +28,10 @@ WORKDIR /usr/src/app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install git+https://git@github.com/SKTBrain/KoBERT.git@master
-RUN git lfs install
 RUN git lfs pull
 RUN pip install konlpy
 RUN pip install sentence-transformers
 RUN pip install transformers
-
 WORKDIR ./backend
 # manage.py를 실행할 수 있는 디렉토리로 이동
 #cd 1st_2
