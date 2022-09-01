@@ -24,7 +24,9 @@ WORKDIR /usr/src/app
 #RUN virtualenv myenv
 #RUN source myenv/bin/activate
 #RUN python -m pip install --upgrade pip
+RUN pip install virtualenv
 RUN virtualenv myenv
+
 RUN source myenv/bin/activate
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
