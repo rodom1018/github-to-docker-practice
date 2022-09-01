@@ -4,8 +4,6 @@ FROM python:3.9.13
 MAINTAINER hyeon <ske04186@gmail.com>
 # Docker의 컨테이너를 생성 및 관리 하는 사람의 정보
 
-RUN apt-get update
-RUN apt-get -y install git-lfs
 #RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
 #RUN apt-get install git-lfs
 RUN pip3 install django
@@ -30,6 +28,8 @@ WORKDIR /usr/src/app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install git+https://git@github.com/SKTBrain/KoBERT.git@master
+RUN apt-get update
+RUN apt-get -y install git-lfs
 RUN git lfs pull
 RUN pip install konlpy
 RUN pip install sentence-transformers
