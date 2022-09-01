@@ -27,7 +27,7 @@ WORKDIR /usr/src/app
 RUN pip install virtualenv
 RUN virtualenv myenv
 
-RUN source ./myenv/bin/activate
+RUN . ./myenv/bin/activate
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install git+https://git@github.com/SKTBrain/KoBERT.git@master
