@@ -83,8 +83,8 @@ termcolor==1.1.0
 threadpoolctl==3.1.0
 tokenizers==0.10.3
 toml==0.10.2
-torch==1.10.1
-torchvision==0.13.1
+torch>=0.0.1
+torchvision>=0.0.1
 tqdm==4.64.0
 transformers==4.8.1
 typing_extensions==4.3.0
